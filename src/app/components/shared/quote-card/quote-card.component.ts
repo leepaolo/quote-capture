@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IQuote } from '../../../models/quote.interface';
 
 @Component({
   selector: 'app-quote-card',
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
   templateUrl: './quote-card.component.html',
   styleUrl: './quote-card.component.css',
 })
-export class QuoteCardComponent {}
+export class QuoteCardComponent {
+  @Input() quote!: IQuote;
+}

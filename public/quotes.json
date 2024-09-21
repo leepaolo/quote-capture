@@ -1,0 +1,177 @@
+{
+  "success": {
+    "total": 12
+  },
+  "contents": {
+    "quotes": [
+      {
+        "quote": "The day soldiers stop bringing you their problems is the day you have stopped leading them. They have either lost confidence that you can help them or concluded that you do not care. Either case is a failure of leadership.",
+        "length": "222",
+        "author": "Colin Powell",
+        "tags": [
+          "confidence",
+          "leadership",
+          "management"
+        ],
+        "category": "management",
+        "id": "XLa1AmylKv1XF_dXcyhvdweF"
+      },
+      {
+        "quote": "In the end, we will remember not the words of our enemies, but the silence of our friends.",
+        "length": "106",
+        "author": "Martin Luther King Jr.",
+        "tags": [
+          "inspiration",
+          "life",
+          "leadership"
+        ],
+        "category": "inspiration",
+        "id": "hH30PAmwKvzTT_5XYbbCdqeL"
+      },
+      {
+        "quote": "It is during our darkest moments that we must focus to see the light.",
+        "length": "74",
+        "author": "Aristotle",
+        "tags": [
+          "inspiration",
+          "philosophy",
+          "hope"
+        ],
+        "category": "philosophy",
+        "id": "kM4bFAmKV2XP_Y0XYbbXQwdd"
+      },
+      {
+        "quote": "Success is the result of perfection, hard work, learning from failure, loyalty, and persistence.",
+        "length": "91",
+        "author": "Colin Powell",
+        "tags": [
+          "success",
+          "hard work",
+          "persistence"
+        ],
+        "category": "motivation",
+        "id": "CpXLa2AmwKv3D_8XcyhvgweF"
+      },
+      {
+        "quote": "A dream doesn't become reality through magic; it takes sweat, determination, and hard work.",
+        "length": "91",
+        "author": "Colin Powell",
+        "tags": [
+          "dream",
+          "determination",
+          "hard work"
+        ],
+        "category": "motivation",
+        "id": "CpXLa3AmwKvzT_d5XYhvgtyH"
+      },
+      {
+        "quote": "If you are going to achieve excellence in big things, you develop the habit in little matters. Excellence is not an exception, it is a prevailing attitude.",
+        "length": "144",
+        "author": "Colin Powell",
+        "tags": [
+          "excellence",
+          "habit",
+          "attitude"
+        ],
+        "category": "excellence",
+        "id": "CpXLa4AmwKvzR_2XYhgvefwQ"
+      },
+      {
+        "quote": "The happiness of your life depends upon the quality of your thoughts.",
+        "length": "56",
+        "author": "Marcus Aurelius",
+        "tags": [
+          "happiness",
+          "thoughts",
+          "life"
+        ],
+        "category": "philosophy",
+        "id": "MA4bAmwV2XP_9XYbbZQoedJ"
+      },
+      {
+        "quote": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+        "length": "78",
+        "author": "Marcus Aurelius",
+        "tags": [
+          "strength",
+          "mind",
+          "power"
+        ],
+        "category": "stoicism",
+        "id": "MA4bAmzV3XP_F0XYbbZoQeWW"
+      },
+      {
+        "quote": "The best revenge is not to be like your enemy.",
+        "length": "38",
+        "author": "Marcus Aurelius",
+        "tags": [
+          "revenge",
+          "enemy",
+          "philosophy"
+        ],
+        "category": "philosophy",
+        "id": "MA4cAmqV3XP_J0XYbEZoVWg"
+      },
+      {
+        "quote": "It is during our darkest moments that we must focus to see the light.",
+        "length": "74",
+        "author": "Aristotle",
+        "tags": [
+          "inspiration",
+          "philosophy",
+          "hope"
+        ],
+        "category": "philosophy",
+        "id": "Ar3xAmwVp0XP_Y0XYbXQAAA"
+      },
+      {
+        "quote": "Quality is not an act, it is a habit.",
+        "length": "39",
+        "author": "Aristotle",
+        "tags": [
+          "quality",
+          "habit",
+          "philosophy"
+        ],
+        "category": "philosophy",
+        "id": "Ar3yAmwVp0XQ_J1XYbGQXBBB"
+      },
+      {
+        "quote": "The more you know, the more you realize you don’t know.",
+        "length": "52",
+        "author": "Socrates",
+        "tags": [
+          "knowledge",
+          "ignorance",
+          "philosophy"
+        ],
+        "category": "philosophy",
+        "id": "Soc4AmwVp0XR_92XYbGQxCCC"
+      },
+      {
+        "quote": "The unexamined life is not worth living.",
+        "length": "40",
+        "author": "Socrates",
+        "tags": [
+          "life",
+          "philosophy",
+          "wisdom"
+        ],
+        "category": "philosophy",
+        "id": "Soc4AmeVp0XR_Y2XYbGQxYYY"
+      },
+      {
+        "quote": "True knowledge exists in knowing that you know nothing.",
+        "length": "51",
+        "author": "Socrates",
+        "tags": [
+          "knowledge",
+          "wisdom",
+          "philosophy"
+        ],
+        "category": "philosophy",
+        "id": "Soc4AmeVq0XR_Y2XYqGQxZZZ"
+      }
+    ]
+  }
+}
