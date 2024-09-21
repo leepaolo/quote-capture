@@ -1,12 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-quote-card',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './quote-card.component.html',
-  styleUrl: './quote-card.component.css'
+  styleUrl: './quote-card.component.css',
 })
-export class QuoteCardComponent {
-
-}
+export class QuoteCardComponent {}
