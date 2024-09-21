@@ -13,25 +13,20 @@ export class QuoteService {
 
   constructor(private http: HttpClient) {}
 
-  getRandomQuotes(): Observable<IQuote> {
+  getRandomQuotes(): Observable<IQuote[]> {
     this.loadQuotes$.next(true); // Set loading state to true before API call
     return this.http.get<IRoot>(this.apiUrl).pipe(
       map((response: IRoot) => {
+        const quotes = response.contents.quotes;
+        const randomQuotes = this.getRandomItems(quotes, 6);
         this.loadQuotes$.next(false); // Set loading state to false after successful response
-        return response.contents.quotes[0]; // Return the first quote from the response
+        return randomQuotes; // Return the 6 random quotes
       }),
       catchError((error) => {
-        console.error('Error fetching quote:', error);
+        console.error('Error fetching quotes:', error);
         this.loadQuotes$.next(false); // Ensure the loading state is set to false even on error
-        // Return a fallback quote in case of an error
-        return of({
-          quote: 'Error fetching quote. Please try again later.',
-          author: 'Anonymous',
-          length: '0',
-          tags: [],
-          category: '',
-          id: '',
-        } as IQuote);
+        // Return a fallback empty array in case of an error
+        return of([]);
       })
     );
   }
@@ -39,5 +34,10 @@ export class QuoteService {
   // Method to track loading state
   isLoading(): Observable<boolean> {
     return this.loadQuotes$.asObservable();
+  }
+  // Generic Type TEMPORARY
+  private getRandomItems<T>(array: T[], count: number): T[] {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   }
 }

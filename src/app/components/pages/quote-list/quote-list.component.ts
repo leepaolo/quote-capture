@@ -27,9 +27,9 @@ export class QuoteListComponent implements OnInit {
   }
 
   getQuotes() {
-    // Fetch multiple quotes and assign to the array
-    this.quoteService.getRandomQuotes().subscribe((quote: IQuote) => {
-      this.quotes.push(quote); // Add the fetched quote to the list of quotes
+    // Fetch 6 random quotes and assign them to the array
+    this.quoteService.getRandomQuotes().subscribe((randomQuotes: IQuote[]) => {
+      this.quotes = randomQuotes; // Store the 6 random quotes in the quotes array
     });
   }
 
