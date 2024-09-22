@@ -2,7 +2,7 @@
 
 <section>
   @if (quotes$ | async; as quotes) {
-  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-3">
     @for (quote of quotes; track quote.quote) {
     <div>
       <app-quote-card [quote]="quote"></app-quote-card>

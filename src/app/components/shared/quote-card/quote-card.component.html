@@ -1,4 +1,6 @@
-<div class="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div
+  class="max-w-2xl px-8 py-4 bg-white rounded-md border-solid border-2 border-slate-200 shadow-xl h-[250px]"
+>
   <!-- TOP SECTION  -->
   <div class="flex items-center justify-between pt-3 pb-3">
     <div class="flex justify-between gap-2">
@@ -33,11 +35,9 @@
     </svg>
   </div>
   <!-- MID SECTION  -->
-  <div class="mt-2">
-    <p class="mt-4 mb-4 text-gray-600 text-center dark:text-gray-300">
-      "{{ quote.quote }}"
-    </p>
-    <p class="text-blue-600 text-center dark:text-blue-400 hover:underline">
+  <div class="flex flex-col items-center mt-2">
+    <p class="mt-4 mb-4 text-gray-600 text-center">"{{ quote.quote }}"</p>
+    <p class="text-blue-600 text-center hover:underline">
       by: {{ quote.author }}
     </p>
   </div>
