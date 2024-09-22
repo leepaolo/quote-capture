@@ -19,9 +19,7 @@ export class FavoriteQuotesComponent implements OnInit {
   constructor(private favorite: FavoriteService) {}
 
   ngOnInit(): void {
-    const favorites = this.favorite.loadFromLocalStorage();
-    console.log('Favorites loaded in component:', favorites);
-    this.quotes$ = of(favorites);
+    this.quotes$ = this.favorite.favoriteQuotes$;
   }
 
   onDestroy(): void {

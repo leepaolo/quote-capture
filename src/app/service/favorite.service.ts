@@ -10,43 +10,42 @@ export class FavoriteService {
   private favoriteQuotesSubject = new BehaviorSubject<IQuote[]>(
     this.loadFromLocalStorage()
   );
-  favoriteQuotes$ = this.favoriteQuotesSubject.asObservable;
+  favoriteQuotes$ = this.favoriteQuotesSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  // STEP 3 - Save quote to favorites
+  // STEP -3 Add the quote to the favorites
   saveQuoteToFavorites(quote: IQuote): void {
     const favorites = this.favoriteQuotesSubject.value;
-    const isAlreadyFavorite = favorites.some((fav) => fav.id === quote.id);
-    if (!isAlreadyFavorite) {
-      favorites.push(quote);
-      this.saveToLocalStorage(favorites);
+    if (!favorites.some((fav) => fav.id === quote.id)) {
+      const updatedFavorites = [...favorites, quote];
+      this.favoriteQuotesSubject.next(updatedFavorites);
+      this.saveToLocalStorage(updatedFavorites);
     }
   }
 
-  // STEP 4 - Check if quote is saved to favorites
-  removeQuoteFromFavorites(quote: IQuote): void {
-    let favorites = this.loadFromLocalStorage();
-    favorites = favorites.filter((fav) => fav.id !== quote.id);
-    this.saveToLocalStorage(favorites);
-  }
-  // STEP 5 - Remove quote from favorites
+  // STEP - 4 Check if the quote is saved to favorites
   isSavedToFavorites(quote: IQuote): boolean {
-    const favorites = this.loadFromLocalStorage();
-    return favorites.some((fav) => fav.id === quote.id);
+    return this.favoriteQuotesSubject.value.some((fav) => fav.id === quote.id);
   }
 
-  // STEP 2 - Save favorites to local storage
-  saveToLocalStorage(favorites: IQuote[]): void {
-    console.log('Saving to local storage:', favorites);
+  // STEP - 5 Remove the quote from favorites
+  removeQuoteFromFavorites(quote: IQuote): void {
+    const updatedFavorites = this.favoriteQuotesSubject.value.filter(
+      (fav) => fav.id !== quote.id
+    );
+    this.favoriteQuotesSubject.next(updatedFavorites);
+    this.saveToLocalStorage(updatedFavorites);
+  }
+
+  // STEP -2 Save the favorites to local storage
+  private saveToLocalStorage(favorites: IQuote[]): void {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 
-  // STEP 1 - Create a method to load favorites from local storage
-  loadFromLocalStorage(): IQuote[] {
+  //  STEP 1 - Load the favorites from local storage
+  private loadFromLocalStorage(): IQuote[] {
     const favorites = localStorage.getItem('favorites');
-    const parsedFavorites = favorites ? JSON.parse(favorites) : [];
-    console.log('Loaded from local storage:', parsedFavorites);
     return favorites ? JSON.parse(favorites) : [];
   }
 }
