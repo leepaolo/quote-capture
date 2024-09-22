@@ -24,8 +24,7 @@ export class QuoteService {
       }),
       catchError((error) => {
         console.error('Error fetching quotes:', error);
-        this.loadQuotes$.next(false); // Ensure the loading state is set to false even on error
-        // Return a fallback empty array in case of an error
+        this.loadQuotes$.next(false);
         return of([]);
       })
     );

@@ -1,1 +1,17 @@
-<p>favorite-quotes works!</p>
+<br />
+
+<section>
+  @if (quotes$ | async; as quotes) {
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    @for (quote of quotes; track quote.id) {
+    <div>
+      <app-quote-card [quote]="quote"></app-quote-card>
+    </div>
+    } @empty {
+    <p>There are no quotes</p>
+    }
+  </section>
+  } @else {
+  <p>Loading...</p>
+  }
+</section>

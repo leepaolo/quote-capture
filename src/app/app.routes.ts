@@ -5,5 +5,5 @@ import { FavoriteQuotesComponent } from './components/pages/favorite-quotes/favo
 export const routes: Routes = [
   { path: 'quotes', component: QuoteListComponent },
   { path: 'my-favorite-quotes', component: FavoriteQuotesComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: 'quotes', pathMatch: 'full' },
 ];
