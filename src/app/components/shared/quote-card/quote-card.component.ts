@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IQuote } from '../../../models/quote.interface';
 import { FavoriteQuotesComponent } from '../../pages/favorite-quotes/favorite-quotes.component';
 import { FavoriteService } from '../../../service/favorite.service';
@@ -15,10 +15,12 @@ import { copyToClipboard } from '../../../utils/clipboard.util';
 })
 export class QuoteCardComponent implements OnInit {
   @Input() quote!: IQuote;
-  saveQuote: string = 'Save to Favorites';
+  @Output() discardQuote = new EventEmitter<IQuote>();
+
+  saveQuoteText: string = 'Save to Favorites';
   isSaved: boolean = false;
 
-  discardQuote: string = 'Discard quote';
+  discardQuoteText: string = 'Discard quote';
   isDiscarded: boolean = false;
 
   hasCopied: boolean = false;
@@ -33,7 +35,7 @@ export class QuoteCardComponent implements OnInit {
   }
 
   private updateSaveQuoteText(): void {
-    this.saveQuote = this.isSaved
+    this.saveQuoteText = this.isSaved
       ? 'Remove from Favorites'
       : 'Save to Favorites';
   }
@@ -48,7 +50,9 @@ export class QuoteCardComponent implements OnInit {
     this.updateSaveQuoteText();
   }
 
-  discardQuoteFromList(): void {}
+  discardQuoteFromList(): void {
+    this.discardQuote.emit(this.quote);
+  }
 
   copyClipboard(): void {
     const textToCopy = `"${this.quote.quote}" - ${this.quote.author}`;
