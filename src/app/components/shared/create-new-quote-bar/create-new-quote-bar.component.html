@@ -4,36 +4,35 @@
   >
     <!-- TEXT LINK -->
     <section class="">
-      <form>
+      <form [formGroup]="createQuoteForm" (ngSubmit)="onSubmit()">
+        <!-- BLOCK QUOTE -->
         <div class="grid grid-cols-1 gap-6 mt-4 lg:grid-cols-3 w-full">
-          <!-- Quote input spans 2 columns on larger screens, full width on small screens -->
           <div class="lg:col-span-2 w-full">
-            <input
-              id="quote"
-              type="text"
-              placeholder="Add new quote"
-              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-            />
+            <app-input-text
+              [placeholder]="quoteText"
+              formControlName="quoteText"
+            ></app-input-text>
           </div>
-
-          <!-- Author input and button stack on smaller screens, inline on larger screens -->
           <div
             class="flex flex-col lg:flex-row lg:items-end lg:justify-end w-full"
           >
+            <!-- BLOCK AUTHOR -->
             <div class="w-full lg:w-auto lg:mr-4">
-              <input
-                id="author"
-                type="text"
-                placeholder="Add the author"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              />
+              <div class="lg:col-span-1 w-full">
+                <app-input-text
+                  [placeholder]="authorText"
+                  formControlName="authorText"
+                ></app-input-text>
+              </div>
             </div>
 
-            <!-- Button goes below the Author input on small screens, inline on larger screens -->
+            <!-- Submit Button -->
             <button
-              class="w-full lg:w-auto mt-4 lg:mt-0 px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              type="submit"
+              class="w-full lg:w-auto mt-4 lg:mt-0 px-8 py-3 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              [disabled]="!createQuoteForm.valid"
             >
-              Save
+              {{ buttonText }}
             </button>
           </div>
         </div>
