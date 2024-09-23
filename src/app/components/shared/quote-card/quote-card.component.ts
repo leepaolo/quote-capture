@@ -19,7 +19,6 @@ export class QuoteCardComponent implements OnInit {
 
   saveQuoteText: string = 'Save to Favorites';
   isSaved: boolean = false;
-
   discardQuoteText: string = 'Discard quote';
   isDiscarded: boolean = false;
 
