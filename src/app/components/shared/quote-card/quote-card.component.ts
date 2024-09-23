@@ -4,6 +4,7 @@ import { IQuote } from '../../../models/quote.interface';
 import { FavoriteQuotesComponent } from '../../pages/favorite-quotes/favorite-quotes.component';
 import { FavoriteService } from '../../../service/favorite.service';
 import { Subscription } from 'rxjs';
+import { copyToClipboard } from '../../../utils/clipboard.util';
 
 @Component({
   selector: 'app-quote-card',
@@ -19,6 +20,8 @@ export class QuoteCardComponent implements OnInit {
 
   discardQuote: string = 'Discard quote';
   isDiscarded: boolean = false;
+
+  hasCopied: boolean = false;
 
   private quoteDestroy$ = new Subscription();
 
@@ -43,6 +46,25 @@ export class QuoteCardComponent implements OnInit {
     }
     this.isSaved = !this.isSaved;
     this.updateSaveQuoteText();
+  }
+
+  discardQuoteFromList(): void {}
+
+  copyClipboard(): void {
+    const textToCopy = `"${this.quote.quote}" - ${this.quote.author}`;
+    navigator.clipboard.writeText(textToCopy).then(
+      () => {
+        this.hasCopied = true; // Set the state to true after copying
+        // Optionally, reset the state after a delay if you want the button to reappear
+        setTimeout(() => {
+          this.hasCopied = false;
+        }, 4000); // Adjust the delay as needed
+      },
+      (err) => {
+        console.error('Could not copy text: ', err);
+        // Optionally, display an error message to the user
+      }
+    );
   }
 
   onDestroy(): void {
