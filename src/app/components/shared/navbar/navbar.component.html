@@ -17,6 +17,9 @@
       >
     </section>
     <!-- BUTTON CTA-->
-    <app-button [text]="createNewQuote"></app-button>
+    <app-button
+      [text]="createNewQuote"
+      (click)="toggleCreateQuote()"
+    ></app-button>
   </div>
 </nav>

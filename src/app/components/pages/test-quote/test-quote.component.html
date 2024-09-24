@@ -1,2 +1,11 @@
 <p>test-quote works!</p>
+@for(quote of quotes; track quote.id){
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ quote.quote }}</h5>
+    <p class="card-text">{{ quote.author }}</p>
+  </div>
+</div>
+}
+
 {{ quotes | json }}

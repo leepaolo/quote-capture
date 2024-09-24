@@ -6,6 +6,7 @@ import {
   MY_FAVORITE_QUOTE_URL,
 } from '../../pages/constants/navabr.constant';
 import { RouterModule } from '@angular/router';
+import { CreateQuoteService } from '../../../service/create-quote.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,4 +22,8 @@ export class NavbarComponent {
 
   QUOTE_URL = QUOTE_URL;
   MY_FAVORITE_QUOTE_URL = MY_FAVORITE_QUOTE_URL;
+
+  constructor() {}
+
+  toggleCreateQuote(): void {}
 }

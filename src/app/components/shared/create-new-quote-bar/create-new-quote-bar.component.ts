@@ -8,6 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { CreateQuoteService } from '../../../service/create-quote.service';
+import { IQuote } from '../../../models/quote.interface';
 
 @Component({
   selector: 'app-create-new-quote-bar',
@@ -25,7 +27,10 @@ export class CreateNewQuoteBarComponent implements OnInit, OnDestroy {
 
   createQuoteForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private createQuoteService: CreateQuoteService
+  ) {}
 
   ngOnInit(): void {
     this.createQuoteForm = this.fb.group({
@@ -40,13 +45,43 @@ export class CreateNewQuoteBarComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.createQuoteForm.valid) {
-      const quote = this.createQuoteForm.get('quoteText')?.value;
-      const author = this.createQuoteForm.get('authorText')?.value;
-      console.log('Form submitted:', { quote, author });
-      // You can handle form submission here, e.g., send data to a service
+      const quoteText = this.createQuoteForm.get('quoteText')?.value;
+      const authorText = this.createQuoteForm.get('authorText')?.value;
+      const tags = this.createQuoteForm.get('tags')?.value || [];
+      const category =
+        this.createQuoteForm.get('category')?.value || 'Uncategorized';
+
+      // Construct the IQuote object
+      const newQuote: IQuote = {
+        quote: quoteText,
+        author: authorText,
+        length: quoteText.length.toString(),
+        tags: tags,
+        category: category,
+        id: Math.random().toString(36).substr(2, 9),
+      };
+
+      // Call the service to add the new quote
+      this.createQuoteService.addQuote(newQuote).subscribe({
+        next: (response) => {
+          console.log('Quote added successfully:', response);
+          // Optionally, reset the form
+          this.createQuoteForm.reset({
+            quoteText: '',
+            authorText: '',
+            tags: [],
+            category: '',
+          });
+        },
+        error: (error) => {
+          console.error('Error adding quote:', error);
+          // Optionally, display an error message to the user
+        },
+      });
     } else {
       // Handle invalid form state
       console.error('Form is invalid');
+      // Optionally, display validation errors to the user
     }
   }
 }
