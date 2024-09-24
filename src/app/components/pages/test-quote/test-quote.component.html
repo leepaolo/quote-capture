@@ -1,11 +1,19 @@
-<p>test-quote works!</p>
-@for(quote of quotes; track quote.id){
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{ quote.quote }}</h5>
-    <p class="card-text">{{ quote.author }}</p>
-  </div>
-</div>
-}
-
-{{ quotes | json }}
+<p>MY QUOTE</p>
+<section>
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-3">
+    @for (quote of quotes; track quote.id) {
+    <div>
+      <app-quote-card
+        [showSaveButton]="true"
+        [showDiscardButton]="false"
+        [showDeleteButton]="true"
+        [bgColor]="'#dbeafe'"
+        (deleteQuote)="onDeleteQuote($event)"
+        [quote]="quote"
+      ></app-quote-card>
+    </div>
+    } @empty {
+    <p>There are no quotes</p>
+    }
+  </section>
+</section>

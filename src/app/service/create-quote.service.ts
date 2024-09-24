@@ -21,7 +21,7 @@ export class CreateQuoteService {
     return this.http.post<IQuote[]>(this.quoteUrl, quote);
   }
 
-  deleteQuote(id: number) {
+  deleteQuote(id: string) {
     return this.http.delete(`${this.quoteUrl}/${id}`);
   }
 }

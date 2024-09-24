@@ -10,11 +10,12 @@ import {
   of,
   Subscription,
 } from 'rxjs';
+import { TestQuoteComponent } from '../test-quote/test-quote.component';
 
 @Component({
   selector: 'app-quote-list',
   standalone: true,
-  imports: [CommonModule, QuoteCardComponent],
+  imports: [CommonModule, QuoteCardComponent, TestQuoteComponent],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.css',
 })
@@ -26,16 +27,6 @@ export class QuoteListComponent implements OnInit {
   quotes$ = this.quotesSubject.asObservable();
 
   constructor(private quoteService: QuoteService) {}
-
-  // ngOnInit() {
-  //   this.isLoading$ = this.quoteService.isLoading();
-  //   this.quotes$ = this.quoteService.getRandomQuotes().pipe(
-  //     catchError((error) => {
-  //       console.error('Error fetching quotes:', error);
-  //       return of([]);
-  //     })
-  //   )
-  // }
 
   ngOnInit() {
     this.isLoading$ = this.quoteService.isLoading();

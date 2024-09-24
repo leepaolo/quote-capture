@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { IQuote } from '../../../models/quote.interface';
-import { FavoriteQuotesComponent } from '../../pages/favorite-quotes/favorite-quotes.component';
 import { FavoriteService } from '../../../service/favorite.service';
 import { Subscription } from 'rxjs';
-import { copyToClipboard } from '../../../utils/clipboard.util';
 
 @Component({
   selector: 'app-quote-card',
@@ -13,14 +18,23 @@ import { copyToClipboard } from '../../../utils/clipboard.util';
   templateUrl: './quote-card.component.html',
   styleUrl: './quote-card.component.css',
 })
-export class QuoteCardComponent implements OnInit {
+export class QuoteCardComponent implements OnInit, OnDestroy {
   @Input() quote!: IQuote;
   @Output() discardQuote = new EventEmitter<IQuote>();
+  @Output() deleteQuote = new EventEmitter<IQuote>();
+
+  @Input() showSaveButton: boolean = false;
+  @Input() showDiscardButton: boolean = false;
+  @Input() showDeleteButton: boolean = false;
+
+  @Input() bgColor: string = 'white';
 
   saveQuoteText: string = 'Save to Favorites';
   isSaved: boolean = false;
   discardQuoteText: string = 'Discard quote';
   isDiscarded: boolean = false;
+  deleteQuoteText: string = 'Delete quote';
+  isQuoteDeleted: boolean = false;
 
   hasCopied: boolean = false;
 
@@ -53,6 +67,10 @@ export class QuoteCardComponent implements OnInit {
     this.discardQuote.emit(this.quote);
   }
 
+  deleteQuoteFromList(): void {
+    this.deleteQuote.emit(this.quote);
+  }
+
   copyClipboard(): void {
     const textToCopy = `"${this.quote.quote}" - ${this.quote.author}`;
     navigator.clipboard.writeText(textToCopy).then(
@@ -70,7 +88,7 @@ export class QuoteCardComponent implements OnInit {
     );
   }
 
-  onDestroy(): void {
+  ngOnDestroy(): void {
     if (this.quoteDestroy$) {
       this.quoteDestroy$.unsubscribe();
     }

@@ -1,11 +1,16 @@
 <br />
-
+<app-test-quote></app-test-quote>
+<br />
+<p>INSPIRATIONAL QUOTE</p>
 <section>
   @if (quotes$ | async; as quotes) {
   <section class="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-3">
     @for (quote of quotes; track quote.quote) {
     <div>
       <app-quote-card
+        [showSaveButton]="true"
+        [showDiscardButton]="true"
+        [showDeleteButton]="false"
         (discardQuote)="onDiscardQuote($event)"
         [quote]="quote"
       ></app-quote-card>

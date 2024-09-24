@@ -1,24 +1,41 @@
 <div
-  class="max-w-2xl px-8 py-4 bg-white rounded-md border-solid border-2 border-slate-200 shadow-xl h-[250px]"
+  class="max-w-2xl px-8 py-4 rounded-md border-solid border-2 border-slate-200 shadow-xl h-[250px]"
+  [style.backgroundColor]="bgColor"
 >
   <!-- TOP SECTION  -->
   <div class="flex items-center justify-between pt-3 pb-3">
     <div class="flex justify-between gap-2">
+      <!-- Save to Favorites Button -->
       <a
+        *ngIf="showSaveButton"
         class="px-3 py-1 text-sm font-normal text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
         tabindex="0"
         role="button"
         (click)="toggleFavorite()"
         >{{ saveQuoteText }}</a
       >
+
+      <!-- Discard Quote Button -->
       <a
+        *ngIf="showDiscardButton"
         class="px-3 py-1 text-sm font-normal text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
         tabindex="0"
         role="button"
         (click)="discardQuoteFromList()"
         >{{ discardQuoteText }}</a
       >
+
+      <!-- Delete Quote Button -->
+      <a
+        *ngIf="showDeleteButton"
+        class="px-3 py-1 text-sm font-normal text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
+        tabindex="0"
+        role="button"
+        (click)="deleteQuoteFromList()"
+        >{{ deleteQuoteText }}</a
+      >
     </div>
+
     <!-- Copy Button or "Copied" Message -->
     <div class="flex justify-between">
       <ng-container *ngIf="!hasCopied; else copiedTemplate">
