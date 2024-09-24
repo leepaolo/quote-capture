@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CreateQuoteService } from '../../../service/create-quote.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IQuote } from '../../../models/quote.interface';
 import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component';
 
@@ -13,36 +13,22 @@ import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component
   styleUrl: './test-quote.component.css',
 })
 export class TestQuoteComponent implements OnInit, OnDestroy {
-  private quotesSubject = new BehaviorSubject<IQuote[]>([]);
-  quotes$ = this.quotesSubject.asObservable();
+  quotes$: Observable<IQuote[]>;
 
-  private subscriptions = new Subscription();
-
-  quotes: IQuote[] = [];
-
-  constructor(private createQuoteService: CreateQuoteService) {}
-
-  ngOnInit(): void {
-    this.fetchQuotes();
-    const quotesSub = this.quotes$.subscribe((quotes) => {
-      this.quotes = quotes;
-    });
-    this.subscriptions.add(quotesSub);
+  constructor(private createQuoteService: CreateQuoteService) {
+    // Subscribe to the quotes observable from the service
+    this.quotes$ = this.createQuoteService.getQuotes();
   }
 
-  onDiscardQuote(quote: IQuote): void {
-    console.log('Discarding quote:', quote);
-    const currentQuotes = this.quotesSubject.value;
-    const updatedQuotes = currentQuotes.filter((q) => q.id !== quote.id);
-    console.log('Updated quotes array:', updatedQuotes);
-    this.quotesSubject.next(updatedQuotes);
+  ngOnInit(): void {
+    // No need to manually fetch quotes; the service handles it
   }
 
   onDeleteQuote(quote: IQuote): void {
     this.createQuoteService.deleteQuote(quote.id).subscribe({
       next: () => {
         console.log(`Quote with id ${quote.id} deleted successfully.`);
-        this.fetchQuotes();
+        // No need to call fetchQuotes(); the service updates the BehaviorSubject
       },
       error: (err) => {
         console.error('Error deleting quote:', err);
@@ -54,20 +40,7 @@ export class TestQuoteComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
-  fetchQuotes(): void {
-    const fetchSub = this.createQuoteService.getQuote().subscribe({
-      next: (quotes) => {
-        this.quotesSubject.next(quotes);
-      },
-      error: (err) => {
-        console.error('Error fetching quotes:', err);
-        // Optionally, handle the error (e.g., display a message)
-      },
-    });
-    this.subscriptions.add(fetchSub);
-  }
-
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    // No subscriptions to manage since we're using the async pipe
   }
 }
