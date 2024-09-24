@@ -9,7 +9,7 @@ import { IQuote } from '../models/quote.interface';
 })
 export class CreateQuoteService {
   private readonly serverBaseUrl = environment.API_SERVER_BASE_URL;
-  private readonly quoteUrl = `${this.serverBaseUrl}/quotes.json`;
+  private readonly quoteUrl = `${this.serverBaseUrl}/new-quotes`;
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +22,6 @@ export class CreateQuoteService {
   }
 
   deleteQuote(id: number) {
-    return this.http.delete(`${this.quoteUrl}/%{id}`);
+    return this.http.delete(`${this.quoteUrl}/${id}`);
   }
 }
