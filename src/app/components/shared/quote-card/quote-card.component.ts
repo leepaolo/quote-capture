@@ -22,12 +22,14 @@ export class QuoteCardComponent implements OnInit, OnDestroy {
   @Input() quote!: IQuote;
   @Output() discardQuote = new EventEmitter<IQuote>();
   @Output() deleteQuote = new EventEmitter<IQuote>();
+  @Output() filterByAuthor = new EventEmitter<string>();
 
   @Input() showSaveButton: boolean = false;
   @Input() showDiscardButton: boolean = false;
   @Input() showDeleteButton: boolean = false;
 
   @Input() bgColor: string = 'white';
+  @Input() authorFilter: string = '';
 
   saveQuoteText: string = 'Save to Favorites';
   isSaved: boolean = false;
@@ -45,6 +47,12 @@ export class QuoteCardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isSaved = this.favoriteService.isSavedToFavorites(this.quote);
     this.updateSaveQuoteText();
+  }
+
+  get showQuote(): boolean {
+    return this.quote.author
+      .toLowerCase()
+      .includes(this.authorFilter.toLowerCase());
   }
 
   private updateSaveQuoteText(): void {

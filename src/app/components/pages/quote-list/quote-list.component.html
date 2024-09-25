@@ -1,8 +1,9 @@
-<p class="mt-8 mb-5">INSPIRATIONAL QUOTE</p>
+<!-- <p class="mt-8 mb-5">INSPIRATIONAL QUOTE</p> -->
+<br />
 <section>
-  @if (quotes$ | async; as quotes) {
+  @if (filteredQuotes.length > 0) {
   <section class="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-3">
-    @for (quote of quotes; track quote.quote) {
+    @for (quote of filteredQuotes; track quote.quote) {
     <div>
       <app-quote-card
         [showSaveButton]="true"

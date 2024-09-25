@@ -1,5 +1,13 @@
 <section class="mt-5">
-  <app-quote-personal></app-quote-personal>
+  <!-- ADD FILTER UI HERE -->
+  <input
+    type="text"
+    placeholder="Filter by author"
+    class="border p-2 mb-4"
+    (input)="onFilterChange($event)"
+  />
 
-  <app-quote-list></app-quote-list>
+  <!-- Pass the filter observable to both components -->
+  <app-quote-personal [authorFilter]="filter$"></app-quote-personal>
+  <app-quote-list [authorFilter]="filter$"></app-quote-list>
 </section>

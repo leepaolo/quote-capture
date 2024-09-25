@@ -1,7 +1,8 @@
 <!-- <p class="mt-8 mb-5">MY QUOTES</p> -->
 <section>
   <section class="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-3">
-    @if (quotes$ | async; as quotes) { @for (quote of quotes; track quote.id) {
+    @if (filteredQuotes.length > 0) { @for (quote of filteredQuotes; track
+    quote.id) {
     <div>
       <app-quote-card
         [showSaveButton]="true"
@@ -12,11 +13,8 @@
         [quote]="quote"
       ></app-quote-card>
     </div>
-
-    } @empty {
+    } } @else {
     <p>There are no quotes</p>
-    } }@else{
-    <p>Loading...</p>
     }
   </section>
 </section>
