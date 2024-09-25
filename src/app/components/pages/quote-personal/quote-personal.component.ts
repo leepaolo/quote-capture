@@ -6,13 +6,13 @@ import { IQuote } from '../../../models/quote.interface';
 import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component';
 
 @Component({
-  selector: 'app-test-quote',
+  selector: 'app-quote-personal',
   standalone: true,
   imports: [CommonModule, QuoteCardComponent],
-  templateUrl: './test-quote.component.html',
-  styleUrl: './test-quote.component.css',
+  templateUrl: './quote-personal.component.html',
+  styleUrl: './quote-personal.component.css',
 })
-export class TestQuoteComponent implements OnInit, OnDestroy {
+export class QuotePersonalComponent implements OnInit, OnDestroy {
   quotes$: Observable<IQuote[]>;
 
   constructor(private createQuoteService: CreateQuoteService) {

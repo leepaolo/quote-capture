@@ -10,12 +10,13 @@ import {
   of,
   Subscription,
 } from 'rxjs';
-import { TestQuoteComponent } from '../test-quote/test-quote.component';
+
+import { QuotePersonalComponent } from '../quote-personal/quote-personal.component';
 
 @Component({
   selector: 'app-quote-list',
   standalone: true,
-  imports: [CommonModule, QuoteCardComponent, TestQuoteComponent],
+  imports: [CommonModule, QuoteCardComponent, QuotePersonalComponent],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.css',
 })

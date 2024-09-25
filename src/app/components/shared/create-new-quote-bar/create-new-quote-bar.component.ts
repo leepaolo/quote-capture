@@ -35,7 +35,7 @@ export class CreateNewQuoteBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.createQuoteForm = this.fb.group({
       quoteText: ['', Validators.required],
-      authorText: ['', Validators.required],
+      authorText: [''],
     });
   }
 
@@ -46,10 +46,15 @@ export class CreateNewQuoteBarComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.createQuoteForm.valid) {
       const quoteText = this.createQuoteForm.get('quoteText')?.value;
-      const authorText = this.createQuoteForm.get('authorText')?.value;
+      let authorText = this.createQuoteForm.get('authorText')?.value;
       const tags = this.createQuoteForm.get('tags')?.value || [];
       const category =
         this.createQuoteForm.get('category')?.value || 'Uncategorized';
+
+      // Set default author as "Anonymous" if authorText is empty
+      if (!authorText || authorText.trim() === '') {
+        authorText = 'Anonymous';
+      }
 
       // Construct the IQuote object
       const newQuote: IQuote = {
