@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CreateQuoteService } from '../../../service/create-quote.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IQuote } from '../../../models/quote.interface';
 import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component';
 
@@ -9,6 +9,7 @@ import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component
   selector: 'app-quote-personal',
   standalone: true,
   imports: [CommonModule, QuoteCardComponent],
+
   templateUrl: './quote-personal.component.html',
   styleUrl: './quote-personal.component.css',
 })

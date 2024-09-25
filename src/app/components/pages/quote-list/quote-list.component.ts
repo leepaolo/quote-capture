@@ -18,6 +18,7 @@ import { QuoteCardComponent } from '../../shared/quote-card/quote-card.component
   selector: 'app-quote-list',
   standalone: true,
   imports: [CommonModule, QuoteCardComponent, QuotePersonalComponent],
+
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.css',
 })

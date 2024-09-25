@@ -15,6 +15,7 @@ import { BehaviorSubject } from 'rxjs';
     QuotePersonalComponent,
     RouterOutlet,
   ],
+
   templateUrl: './quote-layout.component.html',
   styleUrl: './quote-layout.component.css',
 })

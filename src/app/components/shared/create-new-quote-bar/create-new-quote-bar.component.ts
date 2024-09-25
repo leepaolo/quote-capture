@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { InputTextComponent } from '../../parts/input-text.component';
 import {
   FormBuilder,
@@ -15,6 +20,7 @@ import { IQuote } from '../../../models/quote.interface';
   selector: 'app-create-new-quote-bar',
   standalone: true,
   imports: [CommonModule, InputTextComponent, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './create-new-quote-bar.component.html',
   styleUrls: ['./create-new-quote-bar.component.css'], // Corrected 'styleUrls'
 })

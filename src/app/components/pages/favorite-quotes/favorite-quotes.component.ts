@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { IQuote } from '../../../models/quote.interface';
 import { Observable, of, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -9,10 +14,11 @@ import { FavoriteService } from '../../../service/favorite.service';
   selector: 'app-favorite-quotes',
   standalone: true,
   imports: [CommonModule, QuoteCardComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './favorite-quotes.component.html',
   styleUrl: './favorite-quotes.component.css',
 })
-export class FavoriteQuotesComponent implements OnInit {
+export class FavoriteQuotesComponent implements OnInit, OnDestroy {
   quotes$!: Observable<IQuote[]>;
   private favoriteDestroy$ = new Subscription();
 
@@ -22,7 +28,7 @@ export class FavoriteQuotesComponent implements OnInit {
     this.quotes$ = this.favorite.favoriteQuotes$;
   }
 
-  onDestroy(): void {
+  ngOnDestroy(): void {
     if (this.favoriteDestroy$) {
       this.favoriteDestroy$.unsubscribe();
     }

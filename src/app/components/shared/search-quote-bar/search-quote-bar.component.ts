@@ -1,12 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-search-quote-bar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './search-quote-bar.component.html',
-  styleUrl: './search-quote-bar.component.css'
+  styleUrl: './search-quote-bar.component.css',
 })
-export class SearchQuoteBarComponent {
-
-}
+export class SearchQuoteBarComponent {}
